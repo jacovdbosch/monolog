@@ -27,7 +27,9 @@ class PrintHandler implements Handler {
     var message = '[${record.levelName}] ${record.message}';
 
     if (record.level >= Logger.ERROR) {
-      message += (record.stackTrace ?? StackTrace.current).toString();
+      final stackTrace = record.stackTrace ?? StackTrace.current;
+
+      message += '\n$stackTrace';
     }
 
     final color = COLORS[record.level];

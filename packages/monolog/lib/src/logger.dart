@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import 'handler.dart';
 import 'record.dart';
 
@@ -98,7 +96,7 @@ class Logger {
             record = processor(record);
           }
         } catch (e) {
-          handleError(e, record);
+          _handleError(e, record);
 
           return true;
         }
@@ -109,7 +107,7 @@ class Logger {
           break;
         }
       } catch (e) {
-        handleError(e, record);
+        _handleError(e, record);
 
         return true;
       }
@@ -214,23 +212,22 @@ class Logger {
         stackTrace ?? StackTrace.current,
       );
 
-  /// Delegates the exception management to the custom exception handler, or
-  /// throws the exception if no custom handler is set.
-  ///
-  @protected
-  void handleError(Object error, Record record) {
-    if (exceptionHandler != null) {
-      return exceptionHandler(error, record);
-    }
-
-    throw error;
-  }
-
   /// Dispose the logger instance and any handlers attached to it.
   ///
   void dispose() {
     for (final handler in handlers) {
       handler.dispose();
     }
+  }
+
+  /// Delegates the exception management to the custom exception handler, or
+  /// throws the exception if no custom handler is set.
+  ///
+  void _handleError(Object error, Record record) {
+    if (exceptionHandler != null) {
+      return exceptionHandler(error, record);
+    }
+
+    throw error;
   }
 }
