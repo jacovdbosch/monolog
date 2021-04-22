@@ -130,8 +130,16 @@ class Logger {
 
   /// Adds a [Record] at an arbitrary level.
   ///
-  void log(int level, String message, Map<String, dynamic> context) =>
-      addRecord(level, message, context);
+  void log(
+    int level,
+    String message,
+    Map<String, dynamic> context,
+  ) =>
+      addRecord(
+        level,
+        message,
+        context,
+      );
 
   /// Adds a [Record] at the [DEBUG] level
   ///
@@ -155,23 +163,56 @@ class Logger {
 
   /// Adds a [Record] at the [ERROR] level
   ///
-  void error(String message, [Map<String, dynamic> context]) =>
-      addRecord(ERROR, message, context, StackTrace.current);
+  void error(String message,
+          [Map<String, dynamic> context, StackTrace stackTrace]) =>
+      addRecord(
+        ERROR,
+        message,
+        context,
+        stackTrace ?? StackTrace.current,
+      );
 
   /// Adds a [Record] at the [CRITICAL] level
   ///
-  void critical(String message, [Map<String, dynamic> context]) =>
-      addRecord(CRITICAL, message, context, StackTrace.current);
+  void critical(
+    String message, [
+    Map<String, dynamic> context,
+    StackTrace stackTrace,
+  ]) =>
+      addRecord(
+        CRITICAL,
+        message,
+        context,
+        stackTrace ?? StackTrace.current,
+      );
 
   /// Adds a [Record] at the [ALERT] level
   ///
-  void alert(String message, [Map<String, dynamic> context]) =>
-      addRecord(ALERT, message, context, StackTrace.current);
+  void alert(
+    String message, [
+    Map<String, dynamic> context,
+    StackTrace stackTrace,
+  ]) =>
+      addRecord(
+        ALERT,
+        message,
+        context,
+        stackTrace ?? StackTrace.current,
+      );
 
   /// Adds a [Record] at the [EMERGENCY] level
   ///
-  void emergency(String message, [Map<String, dynamic> context]) =>
-      addRecord(EMERGENCY, message, context, StackTrace.current);
+  void emergency(
+    String message, [
+    Map<String, dynamic> context,
+    StackTrace stackTrace,
+  ]) =>
+      addRecord(
+        EMERGENCY,
+        message,
+        context,
+        stackTrace ?? StackTrace.current,
+      );
 
   /// Delegates the exception management to the custom exception handler, or
   /// throws the exception if no custom handler is set.
