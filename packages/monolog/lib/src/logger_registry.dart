@@ -134,7 +134,7 @@ class _LoggerRegistryImpl implements LoggerRegistry {
 
     _instances[name] = logger;
 
-    if (isDefault) _default = name;
+    if (isDefault || _instances.length == 1) _default = name;
   }
 
   @override
